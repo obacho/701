@@ -6,10 +6,15 @@
   <form action="" method="post" name="endlog">
       {{ form.hidden_tag() }}
       <p>
-          Please enter your leaving time:<br>
-          {{ form.time(size=80) }}<br>
+          start time: 
+          {{ form.time(size=10) }} 
+          <input type="submit" value="log start">
+      </p>        
+      <p>
+          leaving time: 
+          {{ form.time(size=10) }} 
+          {{ form.had_lunch }} Had Lunch</p>
+          <input type="submit" value="log end">
       </p>
-      <p>{{ form.had_lunch }} Had Lunch</p>
-      <p><input type="submit" value="Had Lunch"></p>
   </form>
 {% endblock %}
