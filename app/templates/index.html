@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+      <h1>Hello, {{ user.nickname }}!</h1>
+    {% for log in logs %}
+    <div><p>You showed up on {{ log.day }} from <b>{{ log.times.start }}</b> to <b>{{ log.times.end }}</b></p></div>
+    {% endfor %}
+{% endblock %}

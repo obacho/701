@@ -1,0 +1,15 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Sign In</h1>
+  <form action="" method="post" name="endlog">
+      {{ form.hidden_tag() }}
+      <p>
+          Please enter your leaving time:<br>
+          {{ form.time(size=80) }}<br>
+      </p>
+      <p>{{ form.had_lunch }} Had Lunch</p>
+      <p><input type="submit" value="Had Lunch"></p>
+  </form>
+{% endblock %}
