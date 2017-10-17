@@ -2,19 +2,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Sign In</h1>
+  <h1>Time Logging</h1>
   <form action="" method="post" name="endlog">
       {{ form.hidden_tag() }}
       <p>
-          start time: 
-          {{ form.time(size=10) }} 
-          <input type="submit" value="log start">
+        <input type="submit" name="submit" value="log start">
+      </p>
+      <p>        
+        <input type="submit" name="submit" value="log end">
+
+      </p>
+      <!--
+      <p>
+          enter start time: 
+          {{ form.start_time(size=10) }} 
       </p>        
       <p>
-          leaving time: 
-          {{ form.time(size=10) }} 
-          {{ form.had_lunch }} Had Lunch</p>
-          <input type="submit" value="log end">
-      </p>
+          enter leaving time: 
+          {{ form.end_time(size=10) }} 
+          {{ form.had_lunch }} had Lunch
+          
+      </p> 
+      -->
   </form>
 {% endblock %}
