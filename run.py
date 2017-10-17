@@ -1,3 +1,4 @@
+#!venv/bin/python
 # -*- coding: utf-8 -*-
 """
 Created on Tue Oct 17 08:51:11 2017
@@ -6,4 +7,4 @@ Created on Tue Oct 17 08:51:11 2017
 """
 
 from app import app
-app.run(debug=True)
+app.run(host= '0.0.0.0', port=9008, debug=True)
