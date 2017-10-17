@@ -34,15 +34,17 @@ def login():
     if form.validate_on_submit():
         if request.method == 'POST':
             if request.form['submit'] == "log start":
-                event = Event(time=datetime.now(), 
-                              check_out=False,
-                              user_id = 0)
+                event = Event(date = datetime.now().date(),
+                              time = datetime.now(), 
+                              check_out = False,
+                              user_id = 1)
                 db.session.add(event)
                 db.session.commit()
             if request.form['submit'] == "log end":
-                event = Event(time=datetime.now(), 
-                              check_out=True,
-                              user_id = 0)
+                event = Event(date = datetime.now().date(),
+                              time = datetime.now(), 
+                              check_out = True,
+                              user_id = 1)
                 db.session.add(event)
                 db.session.commit()                
             return redirect(url_for('login'))

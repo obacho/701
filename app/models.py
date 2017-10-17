@@ -14,6 +14,7 @@ class User(db.Model):
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime, index=True)
     time = db.Column(db.DateTime, index=True)
     check_out = db.Column(db.Boolean, index=True)
     #lunch_time = db.Column(db.Interval, index=True)
