@@ -9,27 +9,30 @@ from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime
 from app import app, db, lm
 from .forms import LogForm, LoginForm
-from .models import User, Event
+from .models import User, Worksession
 
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
+    def format_time(time):
+        if isinstance(time, datetime):
+            return '{}:{}'.format(time.hour, time.minute)
+        else:
+            return ''
     user = g.user
     #user = {'nickname': 'Rainberto I.'}  # fake user    
-    logs = [
-             {'day': '16.10.17',
-             'times': {'start': '8:00', 
-                      'end':   '17:30'}
-              },
-             {'day': '17.10.17',
-             'times': {'start': '8:15', 
-                      'end':   '17:15'}
-              },]
+    worksessions = user.worksessions.all()
+    worksessions = worksessions[-10:]
+    for sess in worksessions:
+        print (sess.check_in.hour)
+        sess.check_in = format_time(sess.check_in)
+        sess.check_out = format_time(sess.check_out)
+      
     return render_template('index.html',
                            title='Home',
                            user=user,
-                           logs=logs)
+                           sessions=worksessions)
 
 
 @lm.user_loader
@@ -66,23 +69,24 @@ def logout():
     return redirect(url_for('index'))
     
 @app.route('/log', methods=['GET', 'POST'])
+@login_required
 def log_time():
+    user = g.user
     form = LogForm()
     if form.validate_on_submit():
         if request.method == 'POST':
             if request.form['submit'] == "log start":
-                event = Event(date = datetime.now().date(),
-                              time = datetime.now(), 
-                              check_out = False,
-                              user_id = 1)
-                db.session.add(event)
+                worksession = Worksession(date = datetime.now().date(),
+                              check_in = datetime.now(), 
+                              check_out = None,
+                              user_id = user.id)
+                db.session.add(worksession)
                 db.session.commit()
             if request.form['submit'] == "log end":
-                event = Event(date = datetime.now().date(),
-                              time = datetime.now(), 
-                              check_out = True,
-                              user_id = 1)
-                db.session.add(event)
+                current_date = datetime.now().date()
+                last_session =  user.worksessions.filter_by(date=current_date).group_by('date').all()[0]
+                last_session.check_out = datetime.now()
+                db.session.add(last_session)
                 db.session.commit()                
             return redirect(url_for('login'))
     return render_template('log.html', 
