@@ -2,16 +2,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Time Logging</h1>
+  <h1>Login</h1>
   <form action="" method="post" name="login">
-      {{ form.hidden_tag() }}     
+      {{ form.hidden_tag() }}
       <p>
-          enter nickname: 
-          {{ form.nickname(size=16) }} 
-          {{ form.remember_me }} remember me
+      {{message}}
+      </p>
+      <p>
+          enter username and password:
+          <br>{{ form.username(size=16) }}
+          <br>{{ form.password(size=16) }}
+          <br>{{ form.remember_me }} remember me
+      </p>
+      <p>
         <input type="submit" name="submit" value="log in">
-          
-          
-      </p> 
+      </p>
+
+
   </form>
 {% endblock %}

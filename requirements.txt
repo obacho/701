@@ -1,4 +1,5 @@
 click==6.7
+cycler==0.10.0
 decorator==4.1.2
 Flask==0.12.2
 Flask-Login==0.4.0
@@ -7,7 +8,13 @@ Flask-WTF==0.14.2
 itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
+matplotlib==2.1.0
+numpy==1.13.3
 pbr==3.1.1
+pyparsing==2.2.0
+python-dateutil==2.6.1
+pytz==2017.2
+simplepam==0.1.5
 six==1.11.0
 SQLAlchemy==1.1.14
 sqlalchemy-migrate==0.11.0

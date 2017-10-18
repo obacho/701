@@ -4,7 +4,7 @@ from app import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nickname = db.Column(db.String(64), index=True, unique=True)
+    username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     worksessions = db.relationship('Worksession', backref='user', lazy='dynamic')
 
@@ -13,20 +13,20 @@ class User(db.Model):
         return True
 
     def is_active(self):
-        return True        
+        return True
 
     @property
     def is_anonymous(self):
-        return False        
-        
+        return False
+
     def get_id(self):
         try:
             return unicode(self.id)  # python 2
         except NameError:
             return str(self.id)  # python 3
-        
+
     def __repr__(self):
-        return '<User %r>' % (self.nickname)
+        return '<User %r>' % (self.username)
 
 class Worksession(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -38,6 +38,6 @@ class Worksession(db.Model):
 
 
     def __repr__(self):
-        return '<session from {} {}:{}>'.format(self.date, 
-                                                self.check_in.hour, 
-                                                self.check_in.minute)       
+        return '<session from {} {}:{}>'.format(self.date,
+                                                self.check_in.hour,
+                                                self.check_in.minute)
