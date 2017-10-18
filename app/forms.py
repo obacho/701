@@ -16,3 +16,7 @@ class LogForm(FlaskForm):
     start_time = StringField('start_time', )#validators=[DataRequired()])    
     end_time = StringField('end_time', )#validators=[DataRequired()])    
     had_lunch = BooleanField('had_lunch', default=True)
+    
+class LoginForm(FlaskForm):
+    nickname = StringField('nickname', validators=[DataRequired()])
+    remember_me = BooleanField('remember_me', default=True)

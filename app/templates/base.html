@@ -7,7 +7,13 @@
     {% endif %}
   </head>
   <body>
-    <div>microlog: <a href="/index">Home</a></div>
+    <div>microlog: 
+        <a href="/index">Home</a>
+        | <a href="{{url_for('log_time')}}">Log time</a>
+        {% if g.user.is_authenticated %}
+        | <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}        
+    </div>        
     <hr>
     {% block content %}{% endblock %}
   </body>
