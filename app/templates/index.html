@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
       <h1>Hello, {{ user.username }}!</h1>
-
       <p>
+      </p>
+      <p>
+        here's your recent workhours<br>
+
         <img src="data:image/png;base64, {{ plot }}">
       </p>
-    {% for sess in sessions %}
+    <!--{% for sess in sessions %}
     <div><p>You showed up on {{ sess.date }}
         <br>from <b>{{ sess.check_in }}</b> to <b>{{ sess.check_out }}</b></p></div>
     {% endfor %}
+  -->
 {% endblock %}
