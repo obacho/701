@@ -5,6 +5,8 @@ def plot_worksessions(worksessions):
 
     import io
     from numpy import arange
+    import matplotlib as mpl
+    mpl.use('agg')
     import matplotlib.pyplot as plt
     import matplotlib.dates as dates
     import base64
