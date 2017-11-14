@@ -43,7 +43,10 @@ def plot_worksessions(worksessions):
     for sess in worksessions:
         date = datetime.combine(sess.date, datetime.min.time())
         check_in = sess.check_in.replace(year=now.year, month=now.month, day=now.day)
-        check_out = sess.check_out.replace(year=now.year, month=now.month, day=now.day)
+        if sess.check_out:
+            check_out = sess.check_out.replace(year=now.year, month=now.month, day=now.day)
+        else:
+            check_out = now
         workhours = check_out - check_in
         timelines(date, check_in, check_out, ax)
         ax.text(date+timedelta(hours=3), check_in+workhours/2, strfdelta(workhours, '%H:%M'), rotation=90)

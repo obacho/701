@@ -6,7 +6,13 @@
       <p>
         here's your recent workhours<br>
 
+        <!--
         <img src="data:image/png;base64, {{ plot }}">
+      -->
+      {{ div|safe }}
+      <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.10.min.js"></script>
+      <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.10.min.js"></script>
+      {{ script|safe }}
       </p>
     <!--{% for sess in sessions %}
     <div><p>You showed up on {{ sess.date }}

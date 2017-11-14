@@ -13,6 +13,7 @@ from app import app, db, lm
 from .forms import LogForm, LoginForm
 from .models import User, Worksession
 from .plotting import plot_worksessions
+from .iplotting import iplot_worksessions
 
 @app.route('/')
 @app.route('/index')
@@ -26,17 +27,19 @@ def index():
     user = g.user
     #user = {'nickname': 'Rainberto I.'}  # fake user
     worksessions = user.worksessions.all()
-    worksessions = worksessions[-10:]
+    worksessions = worksessions[-10:-1]
     #for sess in worksessions:
     #    sess.check_in = format_time(sess.check_in)
     #    sess.check_out = format_time(sess.check_out)
 
 
-    plot = plot_worksessions(worksessions)
-
+    #plot = plot_worksessions(worksessions)
+    div, script = iplot_worksessions(worksessions)
     return render_template('index.html',
                            title='Home',
-                           plot = plot,
+                           #plot = plot,
+                           div = div,
+                           script=script,
                            user=user,
                            sessions=worksessions)
 
