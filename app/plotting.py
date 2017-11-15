@@ -27,6 +27,15 @@ def plot_worksessions(worksessions):
     plots worksessions
     '''
 
+
+    import io
+    from numpy import arange
+    import matplotlib as mpl
+    mpl.use('agg')
+    import matplotlib.pyplot as plt
+    import matplotlib.dates as dates
+    import base64
+    from datetime import datetime, timedelta
     img = io.BytesIO()
 
     f, ax = plt.subplots()
